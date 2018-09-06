@@ -151,7 +151,13 @@ class BinarySearchTree {
   }
 
   postOrder() {
-
+    if (this.left) {
+      this.left.postOrder();
+    }
+    if (this.right) {
+      this.right.postOrder();
+    }
+    console.log(this.key);
   }
 
 }

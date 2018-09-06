@@ -28,5 +28,6 @@ searchTree.insert(66);
 searchTree.insert(90);
 searchTree.insert(22);
 
-// searchTree.preOrder();
-return searchTree.inOrder();
+// return searchTree.preOrder();
+// return searchTree.inOrder();
+return searchTree.postOrder();
