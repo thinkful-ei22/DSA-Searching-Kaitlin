@@ -131,7 +131,13 @@ class BinarySearchTree {
   }
 
   inOrder() {
-
+    if (this.left) {
+      this.left.inOrder();
+    }
+    console.log(this.key);
+    if (this.right) {
+      this.right.inOrder();
+    }
   }
 
   preOrder() {
