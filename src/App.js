@@ -28,8 +28,30 @@ class App extends Component {
     return 'Not Found';
   }
 
-  binarySearch() {
+  binarySearch(array, value, start, end, tries = 0) {
+    // let array = this.state.data;
+    // let value = parseInt(e.target.input.value, 10);
+    start = start === undefined ? 0 : start;
+    end = end === undefined ? array.length : end;
 
+    if (start > end) {
+      return 'Item not in array';
+    }
+
+    const index = Math.floor((start + end)/2);
+    const item = array[index];
+
+    if (item === value) {
+      this.setState({binaryTries: tries});
+      return index;
+    }
+    else if (item < value) {
+      return this.binarySearch(array, value, index+1, end, tries+1);
+    }
+    else if (item > value) {
+      return this.binarySearch(array, value, start, index-1, tries+1);
+    }
+    console.log('Not found in array')
   }
 
   render() {
@@ -52,6 +74,9 @@ class App extends Component {
 
         <form onSubmit={(e) => {
           e.preventDefault();
+          this.binarySearch(this.state.data.sort(function(a, b) {
+            return a-b;
+          }), parseInt(e.target.input.value, 10));
         }}>
           <label htmlFor="input">Binary Search: </label>
           <input type="text" name="input" ref={value => this.value = value}>
